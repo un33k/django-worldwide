@@ -1,0 +1,45 @@
+django-worldwide
+================
+
+A custom location app for Django, that takes care of cities, states, countries, for you.
+
+Patches welcome: http://github.com/un33k/django-worldwide
+
+Usage
+=====
+
+If you want a worry free location app, then this is for you.
+Just load it up, populate the database and all your pass can use it.
+
+Here what you need to do:
+        
+1. Stick ``"worldwide"`` in ``INSTALLED_APPS``, Then import it like: from worldwide import *
+            
+That's it.
+
+
+Example
+=====
+ # create a city
+ City(name="New York City", population = 99999).save()
+
+ # create a country        
+ Country(name="Canada", iso_2="CA", iso_3="CAN")
+ Country(name="United States", iso_2="US", iso_3="USA")
+
+ # create two cities with same names and verify unique slugs
+ c = City.objects.filter(name="Ottawa")
+ self.assertEquals(len(c), 2)
+ self.assertEquals(c[0].slug, "ottawa-ontario-canada")
+ self.assertEquals(c[1].slug, "ottawa-illinois-united-states")
+
+
+ToDo
+=====
+add templatetags
+add testcase for templatetags
+add fixture to test on objects
+add full fixture to populated all cities in the world (in xml format, json requires lot of RAM)
+
+
+
